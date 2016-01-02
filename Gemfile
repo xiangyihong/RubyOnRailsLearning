@@ -1,4 +1,4 @@
-if ENV['User'] == 'xyh'
+if ENV['USER'].upcase == 'xyh'.upcase
   source 'https://ruby.taobao.org'
 else
   source 'https://rubygems.org'
