@@ -10,5 +10,8 @@ class User < ActiveRecord::Base
                     length: { maximum: USER_EMAIL_MAX_LENGTH },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: {case_sensitive: false}
+  before_save { self.email = email.downcase }
+
+  has_secure_password
 
 end

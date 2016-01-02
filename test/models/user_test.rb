@@ -6,7 +6,9 @@ class UserTest < ActiveSupport::TestCase
   # end
 
   def setup
-    @user = User.new(name:'Test User', email: 'TestUser@test.com')
+    @user = User.new(name:'Test User', email: 'TestUser@test.com',
+                    password: "testpassword", password_confirmation: "testpassword")
+
     @empty_strings = ["   ", "\t", "\n", "\r\n"]
     @valid_email_addresses = %w[
                                 abc@abc.com
