@@ -1,4 +1,4 @@
-if ENV['Home'] and ENV['HOME']['xyh'] # use taobao if I develop on my Desktop
+if ENV['User'] == 'xyh' # If I develop in local machine
   source 'https://ruby.taobao.org'
 else
   source 'https://rubygems.org'
