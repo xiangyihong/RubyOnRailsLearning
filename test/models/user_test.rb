@@ -82,4 +82,18 @@ class UserTest < ActiveSupport::TestCase
     dup_user.email = dup_user.email.upcase
     assert_not dup_user.valid?
   end
+
+  test "password length test" do
+    short_passwd = "a" * (User::USER_PASSWORD_MINIMUM_LENGTH - 1)
+    @user.password = short_passwd
+    @user.password_confirmation = short_passwd
+    assert_not @user.valid?, "password #{short_passwd.inspect} should not be valid"
+
+    long_passwd = "a" * User::USER_PASSWORD_MINIMUM_LENGTH
+    @user.password = long_passwd
+    @user.password_confirmation = long_passwd
+    assert @user.valid?, "password #{long_passwd.inspect} should be valid"
+  end
+
+
 end
