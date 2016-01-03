@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   USER_EMAIL_NAME_MINIMUM_LENGTH = 3
   USER_PASSWORD_MINIMUM_LENGTH = 6
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]{#{USER_EMAIL_NAME_MINIMUM_LENGTH},}@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]{#{USER_EMAIL_NAME_MINIMUM_LENGTH},}@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
   validates :name, presence: true, length: { maximum: USER_NAME_MAX_LENGTH }
   validates :email, presence: true,

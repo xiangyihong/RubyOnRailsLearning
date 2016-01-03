@@ -70,7 +70,7 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "email name should be unique" do
+  test "email addresses should be unique" do
     @user.save
     dup_user = @user.dup
 
@@ -81,6 +81,28 @@ class UserTest < ActiveSupport::TestCase
     # email is not case sensitive
     dup_user.email = dup_user.email.upcase
     assert_not dup_user.valid?
+  end
+
+  test "email addresses are not case sensitive" do
+    @valid_email_addresses.each do |email|
+      dup_user = @user.dup
+
+      @user.email = email
+      @user.save
+
+      upcase_email_address = email.upcase
+      dup_user.email = upcase_email_address
+      assert_not dup_user.valid?
+    end
+  end
+
+  test "email addresses should be saved as lowcase" do
+    @valid_email_addresses.each do |email|
+      upcase_email = email.upcase
+      @user.email = upcase_email
+      @user.save
+      assert email, @user.reload.email
+    end
   end
 
   test "password length test" do
