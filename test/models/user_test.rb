@@ -50,6 +50,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "name should be unique" do
+    dup_user = @user.dup
+    dup_user.email = @valid_email_addresses.first
+    @user.save
+    assert_not dup_user.valid?
+  end
+
   test "email should not be too long" do
     long_name = "a" * (User::USER_EMAIL_MAX_LENGTH + 1 - '@test.com'.length) + '@test.com'
     @user.email = long_name
